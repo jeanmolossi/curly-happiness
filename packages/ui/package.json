@@ -1,0 +1,62 @@
+{
+	"name": "@repo/ui",
+	"description": "UI components for Your App",
+	"version": "0.0.1",
+	"main": "./dist/index.mjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.mts",
+	"files": [
+		"dist/**"
+	],
+	"scripts": {
+		"build": "tsup",
+		"lint": "eslint src/",
+		"dev": "tsup --watch",
+		"check-types": "tsc --noEmit"
+	},
+	"peerDependencies": {
+		"@vercel/analytics": "^1.0.0",
+		"next": "13.5.4",
+		"react": "^18.2.0"
+	},
+	"devDependencies": {
+		"@repo/ts-config": "workspace:*",
+		"@repo/utils": "workspace:*",
+		"@types/node": "^20.11.24",
+		"@types/react": "^18.2.61",
+		"@types/react-dom": "^18.2.19",
+		"autoprefixer": "^10.4.19",
+		"next": "^14.1.1",
+		"postcss": "^8.4.38",
+		"react": "^18.2.0",
+		"tailwindcss": "^3.4.1",
+		"tsup": "^8.0.2",
+		"typescript": "^5.3.3"
+	},
+	"dependencies": {
+		"@radix-ui/react-slot": "^1.0.2",
+		"class-variance-authority": "^0.7.0",
+		"clsx": "^2.1.0",
+		"lucide-react": "^0.363.0",
+		"next-themes": "^0.3.0",
+		"tailwind-merge": "^2.2.2",
+		"tailwindcss-animate": "^1.0.7"
+	},
+  "author": "Jean Molossi <jean.carlosmolossi@gmail.com>",
+  "homepage": "https://jeanmolossi.com.br",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeanmolossi/saas-first-steps.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jeanmolossi/saas-first-steps/issues"
+  },
+  "keywords": [
+    "saas",
+    "boilerplate",
+    "ui"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

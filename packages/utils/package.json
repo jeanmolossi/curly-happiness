@@ -1,0 +1,53 @@
+{
+  "name": "@repo/utils",
+  "description": "Utility functions and constants for the application",
+  "version": "0.0.1",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "files": ["dist/**"],
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint src/",
+    "dev": "tsup --watch",
+    "check-types": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "next": "14.1.1",
+    "react": "^18.2.0"
+  },
+  "dependencies": {
+    "clsx": "^2.1.0",
+    "tailwind-merge": "^2.2.2"
+  },
+  "devDependencies": {
+    "@repo/ts-config": "workspace:*",
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.61",
+    "next": "^14.1.1",
+    "react": "^18.2.0",
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3"
+  },
+
+  "author": "Jean Molossi <jean.carlosmolossi@gmail.com>",
+  "homepage": "https://jeanmolossi.com.br",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeanmolossi/saas-first-steps.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jeanmolossi/saas-first-steps/issues"
+  },
+  "keywords": [
+    "saas",
+    "boilerplate",
+    "utils",
+    "utility",
+    "functions"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "ISC"
+}
