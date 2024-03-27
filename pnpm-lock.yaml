@@ -8,7 +8,7 @@ importers:
 
   .:
     devDependencies:
-      '@repo/ts-config':
+      '@pwd/ts-config':
         specifier: workspace:*
         version: link:packages/ts-config
       prettier:
@@ -20,7 +20,7 @@ importers:
 
   apps/docs:
     dependencies:
-      '@repo/ui':
+      '@pwd/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       lucide-react:
@@ -36,7 +36,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
-      '@repo/ts-config':
+      '@pwd/ts-config':
         specifier: workspace:*
         version: link:../../packages/ts-config
       '@types/node':
@@ -66,7 +66,7 @@ importers:
 
   apps/web:
     dependencies:
-      '@repo/ui':
+      '@pwd/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       lucide-react:
@@ -82,7 +82,7 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
-      '@repo/ts-config':
+      '@pwd/ts-config':
         specifier: workspace:*
         version: link:../../packages/ts-config
       '@types/node':
@@ -139,10 +139,10 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.1)
     devDependencies:
-      '@repo/ts-config':
+      '@pwd/ts-config':
         specifier: workspace:*
         version: link:../ts-config
-      '@repo/utils':
+      '@pwd/utils':
         specifier: workspace:*
         version: link:../utils
       '@types/node':
@@ -185,7 +185,7 @@ importers:
         specifier: ^2.2.2
         version: 2.2.2
     devDependencies:
-      '@repo/ts-config':
+      '@pwd/ts-config':
         specifier: workspace:*
         version: link:../ts-config
       '@types/node':

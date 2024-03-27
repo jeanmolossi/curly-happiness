@@ -12,7 +12,7 @@
   },
   "aliases": {
     "components": "src",
-    "utils": "@repo/utils",
+    "utils": "@pwd/utils",
     "ui": "src"
   }
 }

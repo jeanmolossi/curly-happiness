@@ -1,5 +1,5 @@
 {
-  "name": "@repo/utils",
+  "name": "@pwd/utils",
   "description": "Utility functions and constants for the application",
   "version": "0.0.1",
   "main": "./dist/index.mjs",
@@ -21,7 +21,7 @@
     "tailwind-merge": "^2.2.2"
   },
   "devDependencies": {
-    "@repo/ts-config": "workspace:*",
+    "@pwd/ts-config": "workspace:*",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",
     "next": "^14.1.1",

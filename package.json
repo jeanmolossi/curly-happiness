@@ -1,5 +1,5 @@
 {
-  "name": "boilerplate",
+  "name": "password-manager",
   "private": true,
   "scripts": {
     "build": "turbo build",
@@ -8,7 +8,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "@repo/ts-config": "workspace:*",
+    "@pwd/ts-config": "workspace:*",
     "prettier": "^3.2.5",
     "turbo": "latest"
   },

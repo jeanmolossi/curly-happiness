@@ -1,5 +1,5 @@
 {
-	"name": "@repo/ui",
+	"name": "@pwd/ui",
 	"description": "UI components for Your App",
 	"version": "0.0.1",
 	"main": "./dist/index.mjs",
@@ -20,8 +20,8 @@
 		"react": "^18.2.0"
 	},
 	"devDependencies": {
-		"@repo/ts-config": "workspace:*",
-		"@repo/utils": "workspace:*",
+		"@pwd/ts-config": "workspace:*",
+		"@pwd/utils": "workspace:*",
 		"@types/node": "^20.11.24",
 		"@types/react": "^18.2.61",
 		"@types/react-dom": "^18.2.19",

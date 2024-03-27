@@ -18,8 +18,8 @@ This SaaS Starter repo includes the following packages/apps:
 
 -   `docs`: a [Next.js](https://nextjs.org/) app
 -   `web`: another [Next.js](https://nextjs.org/) app
--   `@repo/ui`: a [shadcn/ui](https://ui.shadcn.com/docs) based React component library shared by both `web` and `docs` applications
--   `@repo/ts-config`: `tsconfig.json`s used throughout the monorepo
+-   `@pwd/ui`: a [shadcn/ui](https://ui.shadcn.com/docs) based React component library shared by both `web` and `docs` applications
+-   `@pwd/ts-config`: `tsconfig.json`s used throughout the monorepo
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
