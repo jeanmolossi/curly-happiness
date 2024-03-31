@@ -24,7 +24,9 @@ export const actionsToMapObject = (
 		href: string
 	}>,
 ) => {
-	const act = new Map([])
+	const act = new Map<string, { rel: string; method: string; href: string }>(
+		[],
+	)
 
 	actions.forEach(action => {
 		act.set(action.rel, action)

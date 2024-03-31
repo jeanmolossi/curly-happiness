@@ -1,4 +1,6 @@
-import { Password } from '@prisma/client'
+'use client';
+
+import { Password } from '@prisma/client';
 import {
 	Button,
 	Card,
@@ -7,12 +9,13 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from '@pwd/ui'
-import { actionsToMapObject } from '@pwd/utils'
-import { randomBytes } from 'crypto'
-import { ExternalLink, Eye, PenBox } from 'lucide-react'
-import Link from 'next/link'
-import CopyButton from './copy-button'
+} from '@pwd/ui';
+import { actionsToMapObject, cn } from '@pwd/utils';
+import { randomBytes } from 'crypto';
+import { ExternalLink, Eye, EyeOff, Loader2, PenBox, Trash2 } from 'lucide-react';
+import Link from 'next/link';
+import { useState } from 'react';
+import CopyButton from './copy-button';
 
 interface PasswordCardProps {
 	password: Password & {
@@ -24,10 +27,56 @@ interface PasswordCardProps {
 	}
 }
 
+const fakePass = (length = 8) => {
+	const size = Math.round(Math.random() * 16) + length
+	return randomBytes(size).toString('hex').slice(0, length)
+};
+
 const PasswordCard = ({ password }: PasswordCardProps) => {
 	const { id, title, host, shortcut, actions: acts } = password
 
+	const [revealing, setRevealing] = useState(false);
+	const [blurred, setBlurred] = useState(true)
+	const [pass, setPassword] = useState(fakePass())
+
 	const actions = actionsToMapObject(acts)
+
+	const reveal = () => {
+		if (!blurred) {
+			setBlurred(true)
+			setPassword(fakePass(pass.length))
+			return
+		}
+
+		setRevealing(true)
+
+		const revealAction = actions.get('reveal')!
+
+		fetch(revealAction.href, {
+			method: revealAction.method,
+			next: { revalidate: 3600, tags: ['passreveal'] }
+		})
+			.then(async response => {
+				const pwd = await response.text()
+				setPassword(pwd)
+				setBlurred(false)
+			})
+			.catch((err) => {
+				console.error(err.message)
+			})
+			.finally(() => {
+				setRevealing(false)
+			})
+	}
+
+	const handleDelete = () => {
+		const deleteAction = actions.get('delete')!
+
+		fetch(deleteAction.href, { method: deleteAction.method })
+			.then(async () => {
+				window.location.reload()
+			})
+	}
 
 	return (
 		<Card>
@@ -39,12 +88,11 @@ const PasswordCard = ({ password }: PasswordCardProps) => {
 			<CardContent>
 				<div className="inline-flex items-center w-full gap-4">
 					<div className="border-2 border-muted rounded-md p-2 flex-1">
-						<div className="blur-sm flex items-baseline justify-between">
-							<span>
-								{randomBytes(
-									Math.round(Math.random() * 16) + 8,
-								).toString('hex')}
-							</span>
+						<div className={cn('flex items-baseline justify-stretch', {'blur-sm': blurred})}>
+							<span className={cn('w-full', {
+								'select-all': !blurred,
+								'select-none': blurred,
+							})}>{pass}</span>
 						</div>
 					</div>
 
@@ -54,8 +102,17 @@ const PasswordCard = ({ password }: PasswordCardProps) => {
 
 			<CardFooter className="gap-2">
 				{actions.has('reveal') && (
-					<Button size="icon">
-						<Eye />
+					<Button
+						size="icon"
+						onClick={reveal}
+						disabled={revealing}
+						aria-disabled={revealing}
+					>
+						{revealing
+							? <Loader2 className='animate-spin' />
+							: blurred
+								? <Eye />
+								: <EyeOff />}
 						<span className="sr-only">Relevar</span>
 					</Button>
 				)}
@@ -69,11 +126,18 @@ const PasswordCard = ({ password }: PasswordCardProps) => {
 					</Button>
 				)}
 
+				{actions.has('delete') && (
+					<Button variant="destructive" onClick={handleDelete}>
+						<Trash2 className='w-4 h-4' />
+						Deletar
+					</Button>
+				)}
+
 				{actions.has('self') && (
 					<Button asChild variant="link">
 						<a href={shortcut || host} target='_blank'>
 							<ExternalLink className='w-4 h-4' />
-							Abrir
+							Abrir página
 						</a>
 					</Button>
 				)}

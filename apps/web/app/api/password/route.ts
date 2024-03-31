@@ -48,7 +48,15 @@ export const GET = withAuth(async ({ request, user, searchParams }) => {
 	const offset = isNaN(+searchParams.offset) ? 0 : +searchParams.offset
 
 	const passwords = await prisma.password.findMany({
-		where: { ownerId: user.id },
+		where: {
+			ownerId: user.id,
+			...(searchParams.search && {
+				OR: [
+					{ shortcut: { contains: searchParams.search } },
+					{ title: { contains: searchParams.search } },
+				],
+			}),
+		},
 		take,
 		skip: offset,
 		select: {
@@ -74,7 +82,7 @@ export const GET = withAuth(async ({ request, user, searchParams }) => {
 			const actions = [
 				{
 					rel: 'reveal',
-					method: 'POST',
+					method: 'GET',
 					href: resource(`${password.id}/reveal`),
 				},
 				{

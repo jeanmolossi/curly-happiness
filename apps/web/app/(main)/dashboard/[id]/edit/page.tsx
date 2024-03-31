@@ -13,7 +13,7 @@ const Page = ({ params }: { params: { id: string } }) => {
 	const [location, setLocation] = useState('')
 	const [hydrating, setHydrating] = useState(true)
 
-	const { replace } = useRouter()
+	const { refresh } = useRouter()
 
 	const form = useForm<AddPasswordSchema>({
 		resolver: zodResolver(addPasswordSchema),
@@ -36,7 +36,7 @@ const Page = ({ params }: { params: { id: string } }) => {
 		}
 
 		form.reset()
-		replace('/dashboard')
+		window.location.reload()
 	}
 
 	useEffect(() => {
